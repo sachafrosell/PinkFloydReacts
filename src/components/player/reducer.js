@@ -5,7 +5,8 @@ const initialState = {
   spriteY: -48,
   speed: 80,
   shoes: "walkingShoes",
-  keys: []
+  keys: [],
+  save: false
 }
 
 const playerReducer = (state=initialState, action) => {
@@ -34,7 +35,7 @@ const playerReducer = (state=initialState, action) => {
     case "ADD_KEY":
       return {
         ...state,
-        position: action.payload.position
+        keys: [...state.keys, action.payload.key]
       }
     default:
       return state

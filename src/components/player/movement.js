@@ -5,7 +5,7 @@ import quiz from '../text/quiz.js'
 
 const blockSize = 3;
 let speed = 1
-let walkSpeed = 80
+let walkSpeed = 20
 let i = ""
 let isKeyDown = false
 let hitting = false
@@ -45,6 +45,7 @@ function handleMovement(player) {
 
   function dispatchMove(direction) {
     let inComm = store.getState().text.inComm
+    let quizActive = store.getState().map.quizActive
     if (!inComm) {
       walk()
       let newPos = getNewPosition(direction)
@@ -74,7 +75,22 @@ function handleMovement(player) {
           }
         })
       }
-    }
+    } else if (quizActive){
+      switch(direction) {
+        case "UP":
+          store.dispatch({
+            type: "UP"
+          })
+          break;
+        case "DOWN":
+          store.dispatch({
+            type: "DOWN"
+          })
+          break;
+        default:
+          return null
+        }
+      }
   }
 
   function collisionLogic(direction) {
@@ -159,6 +175,8 @@ function handleMovement(player) {
         break
 
         default:
+          return null
+
       }
     }
 
@@ -207,7 +225,7 @@ function handleMovement(player) {
     let start = store.getState().map.start
     if (!store.getState().text.justFinished) {
     if (start) {
-      if (!inComm && !store.getState().text.justFinished) {
+      if (!inComm) {
         let position = store.getState().player.position
         let comms = store.getState().map.comms
         let arr = []
@@ -221,6 +239,12 @@ function handleMovement(player) {
             type: "WHICH_COMM",
             payload: {
               commName: arr[0].name
+            }
+          })
+          store.dispatch({
+            type: "SET_QUIZ",
+            payload: {
+              quizName: arr[0].name
             }
           })
         } else {
@@ -238,13 +262,20 @@ function handleMovement(player) {
           store.dispatch({
             type: "UPDATE_COMM"
           })
-        } else {
+        } else if (quiz[store.getState().quiz.quizName]) {
           store.dispatch({
             type: "ACTIVATE_QUIZ",
           })
           store.dispatch({
             type: "JUST_FINISHED",
           })
+          store.dispatch({
+            type: "CLEAR_COMMS",
+            payload: {
+              commName: ""
+            }
+          })
+        } else {
           store.dispatch({
             type: "CLEAR_COMMS",
             payload: {
@@ -262,16 +293,19 @@ function handleMovement(player) {
       })
     }
   } else {
-    let thisQuiz = quiz["master1"]["wrong"]
-    console.log(thisQuiz)
-    console.log(commPosition);
+    let boolean = quizCorrect()
+    let thisQuiz = ''
+    if (boolean) {
+      thisQuiz = quiz["master1"]["right"]
+    } else {
+      thisQuiz = quiz["master1"]["wrong"]
+    }
     if (commPosition !== thisQuiz.length - 1) {
       soundmanager2.soundManager.sounds.sound1.play()
       store.dispatch({
         type: "UPDATE_COMM"
       })
     } else {
-      // console.log("hti");
       store.dispatch({
         type: "EXIT_COMMS",
       })
@@ -285,6 +319,13 @@ function handleMovement(player) {
   }
   }
 
+  function quizCorrect() {
+    if (store.getState().quiz.quizAnswer) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   function checkShift(e) {
     e.preventDefault()
@@ -349,7 +390,6 @@ function handleMovement(player) {
       }
     }
   })
-
   return player
 }
 

@@ -2,6 +2,7 @@
 import React from 'react';
 import Player from '../player/index'
 import Map from '../map/index'
+import APIstore from '../APIstore/index'
 import Gameboy from '../gameboy/index'
 import Sound from 'react-sound'
 import Door from './door.mp3'
@@ -33,9 +34,7 @@ class World extends React.Component {
       if (!quiz) {
         return (
           <div>
-
           <Start />
-
           <Sound
           url={Breath}
           playStatus={Sound.status.PLAYING}
@@ -63,8 +62,8 @@ class World extends React.Component {
           margin: '20px auto'
         }}
       >
-
-        <Gameboy />
+      <APIstore />
+      <Gameboy />
         {this.startGame()}
 
         <Sound

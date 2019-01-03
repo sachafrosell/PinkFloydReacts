@@ -3,11 +3,14 @@ import { connect } from 'react-redux'
 import startTest from './start-page.png'
 import Sound from 'react-sound'
 import OnTheRun from './ontherun.mp3'
+import quiz from '../text/quiz'
 
 const Quiz = props => {
 
+
   const checkQuiz = () => {
-    if (props.quizActive) {
+    let name = props.quizName
+    if (props.quizActive && quiz[name]) {
       switch(props.quizPosition) {
         case 0:
           return (
@@ -22,10 +25,10 @@ const Quiz = props => {
                 width: "288px",
                 height: "auto"
               }}
-              alt={"start"}
+              alt={"quiz"}
               />
-              <div style={{position: "absolute", top: "20px", left: "70px"}}>
-                <p> What is my favorite year...?! </p>
+              <div style={{position: "absolute", top: "20px", left: "10px"}}>
+                <p> {quiz[name]["question"]} </p>
               </div>
 
             </>
@@ -46,9 +49,12 @@ const Quiz = props => {
               alt={"start"}
               />
               <div style={{position: "absolute", top: "20px", left: "75px"}}>
-                <p> 1973 </p>
-                <p> 1984 </p>
-                <p> 1994 </p>
+                {quiz[name]["choices"].map((a, i) => {
+                  return (
+                    <p key={i} > {a} </p>
+                  )
+                })}
+
               </div>
               <div style={{position: "absolute", top: `${props.pointerPosition}px`, left: "50px"}}>
                 <p> > </p>
@@ -69,7 +75,8 @@ const mapStateToProps = state => {
   return {
     quizActive: state.map.quizActive,
     pointerPosition: state.start.pointerPosition,
-    quizPosition: state.quiz.quizPosition
+    quizPosition: state.quiz.quizPosition,
+    quizName: state.quiz.quizName
   }
 }
 

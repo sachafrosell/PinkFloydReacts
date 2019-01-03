@@ -19,7 +19,7 @@ const checkRender = () => {
           height: "60px",
           borderRadius: "1px"
         }}
-        alt={"start"}
+        alt={"textCover"}
         />
         <div style={{position: "absolute", top: "0px", left: "10px", fontSize: "8px"}}>
 
@@ -29,6 +29,7 @@ const checkRender = () => {
       )
     }
   } else if (props.text.justFinished) {
+    let boolean = checkAnswer()
     return (
       <>
       <img
@@ -41,13 +42,21 @@ const checkRender = () => {
       alt={"start"}
       />
       <div style={{position: "absolute", top: "0px", left: "10px", fontSize: "8px"}}>
-
-      <p> {quiz["master1"]["wrong"][props.text.commPosition]} </p>
+      {(boolean) ? <p> {quiz["master1"]["right"][props.text.commPosition]} </p> : <p> {quiz["master1"]["wrong"][props.text.commPosition]} </p> }
       </div>
       </>
     )
   }
 }
+
+  const checkAnswer = () => {
+    let answer = props.answer
+    if (answer) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   return (
     <div style={{position: "absolute", top: "90px", left: "20px", opacity: 0.7}}>
@@ -58,7 +67,8 @@ const checkRender = () => {
 
 const mapStateToProps = state => {
   return {
-    text: state.text
+    text: state.text,
+    answer: state.quiz.quizAnswer
   }
 }
 
