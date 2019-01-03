@@ -37,27 +37,27 @@ class Dpad extends React.Component {
     let start = store.getState().map.start
     if (start) {
       switch(name) {
-        case "Up":
+        case "UP":
         this.dispatchMove("UP")
         break;
-        case "Right":
+        case "RIGHT":
         this.dispatchMove("RIGHT")
         break;
-        case "Down":
+        case "DOWN":
         this.dispatchMove("DOWN")
         break;
-        case "Left":
+        case "LEFT":
         this.dispatchMove("LEFT")
         break;
       }
     } else {
       switch(name) {
-        case "Up":
+        case "UP":
           store.dispatch({
             type: "UP"
           })
           break;
-        case "Down":
+        case "DOWN":
           store.dispatch({
             type: "DOWN"
           })
@@ -188,7 +188,7 @@ class Dpad extends React.Component {
         </div>
         <div>
           <div
-          className="Up"
+          className="UP"
           onMouseDown={this.handleDown}
           onMouseUp={this.handleUp}
           style={{
@@ -200,7 +200,7 @@ class Dpad extends React.Component {
           }}
           />
           <div
-          className="Right"
+          className="RIGHT"
           onMouseDown={this.handleDown}
           onMouseUp={this.handleUp}
           style={{
@@ -212,7 +212,7 @@ class Dpad extends React.Component {
           }}
           />
           <div
-          className="Down"
+          className="DOWN"
           onMouseDown={this.handleDown}
           onMouseUp={this.handleUp}
           style={{
@@ -224,7 +224,7 @@ class Dpad extends React.Component {
           }}
           />
           <div
-          className="Left"
+          className="LEFT"
           onMouseDown={this.handleDown}
           onMouseUp={this.handleUp}
           style={{

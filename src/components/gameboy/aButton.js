@@ -1,6 +1,7 @@
 import abutton from './abutton.png'
 import React from 'react'
 import store from '../../config/store'
+import Quiz from '../text/quiz'
 
 class A extends React.Component {
 
@@ -20,7 +21,7 @@ class A extends React.Component {
       })
       if (arr.length !== 0) {
         // window.alert(arr[0].name)
-        console.log(arr[0].name);
+        // console.log(arr[0].name);
       }
     } else {
       if (page < 2) {
@@ -41,6 +42,33 @@ class A extends React.Component {
               type: "NEXT_QUIZ"
             })
           } else {
+            let answer = this.positionAnswerLogic()
+            let thisComm = store.getState().quiz.quizName
+            let rightAnswer = Quiz[thisComm]["answer"]
+            let boolean = false;
+            if (rightAnswer === answer) {
+              boolean = true
+            }
+            if (boolean) {
+              store.dispatch({
+                type: 'ADD_KEY',
+                payload: {
+                  key: thisComm
+                }
+              })
+            }
+            store.dispatch({
+              type: 'SET_ANSWER',
+              payload: {
+                whichAnswer: answer
+              }
+            })
+            store.dispatch({
+              type: 'SET_BOOLEAN',
+              payload: {
+                quizAnswer: boolean
+              }
+            })
             store.dispatch({
               type: 'EXIT_QUIZ'
             })
@@ -52,6 +80,18 @@ class A extends React.Component {
       }
     }
   }
+  positionAnswerLogic = () => {
+    let position = store.getState().start.pointerPosition
+    switch(position) {
+      case 20:
+        return 1
+      case 52:
+        return 2
+      case 84:
+        return 3
+    }
+  }
+
 
   render() {
 
