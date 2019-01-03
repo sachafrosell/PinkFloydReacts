@@ -3,10 +3,12 @@ const initialState = {
   portals: [],
   comms: [],
   level: "house2",
+  previousLevel: "house2",
   inPortal: false,
   start: false,
   startPage: 1,
-  quizActive: false
+  quizActive: false,
+  loading: false
 }
 
 const mapReducer = (state=initialState, action) => {
@@ -64,10 +66,20 @@ const mapReducer = (state=initialState, action) => {
       return {
         ...state,
         level: action.payload.level,
+        previousLevel: state.level,
         inPortal: false,
         obstacles: [],
         portals: [],
         comms: [],
+      }
+    case "LOAD_MAP":
+      return {
+        ...action.payload.map
+      }
+    case "LOADING":
+      return {
+        ...state,
+        loading: !state.loading
       }
     default:
       return state

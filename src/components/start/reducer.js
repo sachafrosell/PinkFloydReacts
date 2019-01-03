@@ -21,6 +21,10 @@ const startReducer = (state=initialState, action) => {
           pointerPosition: state.pointerPosition + 32
         }
       }
+    case "LOAD_START":
+      return {
+        ...action.payload.start
+      }
     default:
       return state
   }

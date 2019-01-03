@@ -19,6 +19,7 @@ import Sound from 'react-sound'
 import Breath from './breath.mp3'
 import GreatEyeInTheSky from './greateyeinthesky.mp3'
 import Money from './money.mp3'
+import { connect } from 'react-redux'
 
 const layers1 = Level1.layers
 const layers2 = Level2.layers
@@ -31,6 +32,7 @@ const dungeon2 = Dungeon2.layers
 const dungeon3 = Dungeon3.layers
 const master1 = Master1.layers
 const jsxElements = []
+let previousLevel = "house2"
 
 function importAll(r) {
   let images = {};
@@ -45,42 +47,28 @@ const images = importAll(require.context('./basictiles', false, /\.(png|jpe?g|sv
 
 
 class Map extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      level: "",
-      mounted: false
-    }
-  }
 
-  componentDidMount() {
-    this.setState({
-      mounted: true,
-      level: store.getState().map.level
-    })
-  }
 
   drawTiles = () => {
-
-      if (this.state.level === "level1") {
+      if (this.props.level === "level1") {
         this.makeLevel(layers1)
-      } else if (this.state.level === "level2") {
+      } else if (this.props.level === "level2") {
         this.makeLevel(layers2)
-      } else if (this.state.level === "house1") {
+      } else if (this.props.level === "house1") {
         this.makeLevel(house1)
-      } else if (this.state.level === "house2") {
+      } else if (this.props.level === "house2") {
         this.makeLevel(house2)
-      } else if (this.state.level === "house3") {
+      } else if (this.props.level === "house3") {
         this.makeLevel(house3)
-      } else if (this.state.level === "dungeon1") {
+      } else if (this.props.level === "dungeon1") {
         this.makeLevel(dungeon1)
-      } else if (this.state.level === "lavaland") {
+      } else if (this.props.level === "lavaland") {
         this.makeLevel(lavaland)
-      } else if (this.state.level === "dungeon3") {
+      } else if (this.props.level === "dungeon3") {
         this.makeLevel(dungeon3)
-      } else if (this.state.level === "dungeon2") {
+      } else if (this.props.level === "dungeon2") {
         this.makeLevel(dungeon2)
-      } else if (this.state.level === "master1") {
+      } else if (this.props.level === "master1") {
         this.makeLevel(master1)
       }
   }
@@ -154,11 +142,6 @@ class Map extends React.Component {
     })
   }
 
-  renderTiles = () => {
-    return jsxElements.map(element => {
-      return element
-    })
-  }
 
   inPortal = (boolean, level) => {
     if (boolean) {
@@ -167,84 +150,87 @@ class Map extends React.Component {
   }
 
   whichLevel = (level) => {
-    // console.log(level, this.state.level);
-    switch(this.state.level) {
-      case "level1":
+    if (level !== previousLevel) {
+      switch(previousLevel) {
+        case "level1":
         if (level === "level2") {
-          this.handleLevelSwitch(level, [128, 145])
+          this.handleLevelSwitch(level, [128, 148])
         } else {
-          this.handleLevelSwitch(level, [128, 8])
+          this.handleLevelSwitch(level, [128, -2])
         }
         break;
-      case "master1":
+        case "master1":
         if (level === "level1") {
-          this.handleLevelSwitch(level, [128, 145])
+          this.handleLevelSwitch(level, [128, 148])
         }
         break;
-      case "level2":
+        case "level2":
         if (level === "level1"){
-          this.handleLevelSwitch(level, [128, 3])
+          this.handleLevelSwitch(level, [128, -2])
         } else if (level === "house1") {
           this.handleLevelSwitch(level, [128, 144])
         } else if (level === "dungeon1") {
-          this.handleLevelSwitch(level, [128, 144])
+          this.handleLevelSwitch(level, [128, 148])
         }
         break;
-      case "house1":
-      if (level === "level2"){
-        this.handleLevelSwitch(level, [32, 60])
-      } else if (level === "house2") {
-        this.handleLevelSwitch(level, [16, 112])
-      } else if (level === "house3") {
-        this.handleLevelSwitch(level, [224, 32])
-      }
+        case "house1":
+        if (level === "level2"){
+          this.handleLevelSwitch(level, [32, 60])
+        } else if (level === "house2") {
+          this.handleLevelSwitch(level, [16, 112])
+        } else if (level === "house3") {
+          this.handleLevelSwitch(level, [224, 32])
+        }
         break;
-      case "house2":
+        case "house2":
         if (level === "house1"){
           this.handleLevelSwitch(level, [64, 112])
         } else {
           this.handleLevelSwitch(level, [103, 128])
         }
         break;
-      case "house3":
+        case "house3":
         this.handleLevelSwitch(level, [208, 48])
         break;
-      case "lavaland":
+        case "lavaland":
         if (level === "house2") {
           this.handleLevelSwitch(level, [90, 128])
         } else if (level === "dungeon2") {
-          this.handleLevelSwitch(level, [240, 144])
+          this.handleLevelSwitch(level, [240, 148])
         }
         break;
-      case "dungeon1":
+        case "dungeon1":
         if (level === "level2"){
           this.handleLevelSwitch(level, [128, 5])
         } else if (level === "dungeon3") {
-          this.handleLevelSwitch(level, [224, 144])
+          this.handleLevelSwitch(level, [224, 148])
         } else if (level === "dungeon2") {
-          this.handleLevelSwitch(level, [48, 144])
+          this.handleLevelSwitch(level, [48, 148])
         }
         break;
-      case "dungeon2":
+        case "dungeon2":
         if (level === "dungeon1"){
           this.handleLevelSwitch(level, [48, 8])
         } else if (level === "lavaland") {
           this.handleLevelSwitch(level, [240, 5])
         }
         break;
-      case "dungeon3":
+        case "dungeon3":
         if (level === "dungeon1"){
           this.handleLevelSwitch(level, [224, 8])
         }
         break;
-      default:
+        default:
         return ""
+      }
+      previousLevel = level
+
     }
   }
 
 
   handleLevelSwitch = (level, position) => {
-    setTimeout(() => {
+
       store.dispatch({
         type: 'RESET_PLAYER',
         payload: {
@@ -261,14 +247,12 @@ class Map extends React.Component {
       this.setState({
         level: level
       })
-    }
-    , 1)
   }
 
   whichSong = () => {
     return (
       <Sound
-        url={this.songLogic(this.state.level)}
+        url={this.songLogic(this.props.level)}
         playStatus={Sound.status.PLAYING}
       />
     )
@@ -301,22 +285,18 @@ class Map extends React.Component {
     }
   }
 
-  checkThing = () => {
-    if (this.state.mounted) {
+  makeAndDisplay = () => {
       this.drawTiles()
-      return this.renderTiles()
-    }
+      return jsxElements.splice(0, jsxElements.length)
   }
-
 
   render() {
     return (
       <div>
         <LevelTiles inPortal={this.inPortal}/>
-        {this.checkThing()}
-        {jsxElements.splice(0, jsxElements.length)}
+        {this.makeAndDisplay()}
         <Sound
-          url={this.songLogic(this.state.level)}
+          url={this.songLogic(this.props.level)}
           playStatus={Sound.status.PLAYING}
         />
       </div>
@@ -324,6 +304,12 @@ class Map extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    level: state.map.level,
+    loading: state.map.loading
+  }
+}
 
 
-export default Map
+export default connect(mapStateToProps)(Map)
