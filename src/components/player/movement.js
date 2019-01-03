@@ -5,7 +5,7 @@ import quiz from '../text/quiz.js'
 
 const blockSize = 3;
 let speed = 1
-let walkSpeed = 20
+let walkSpeed = 60
 let i = ""
 let isKeyDown = false
 let hitting = false
@@ -109,6 +109,9 @@ function handleMovement(player) {
     let portals = store.getState().map.portals
     portals.forEach(portal => {
       if (portal.inPortal(newPos)){
+
+        clearInterval(i)
+
         store.dispatch({
           type: 'PORTAL_HIT',
           payload: {
@@ -146,6 +149,7 @@ function handleMovement(player) {
   }
 
   function handleKeyDown(e) {
+
     let start = store.getState().map.start
     if (start) {
       switch(e.keyCode) {
@@ -393,6 +397,23 @@ function handleMovement(player) {
   return player
 }
 
+window.addEventListener('keydown', e => {
+  if (e.keyCode === 187) {
+    store.dispatch({
+      type: "SAVE_GAME"
+    })
+    store.dispatch({
+      type: "TOGGLE_SAVE"
+    })
+  } else if (e.keyCode === 189) {
+    store.dispatch({
+      type: "LOAD_GAME"
+    })
+    store.dispatch({
+      type: "TOGGLE_LOAD"
+    })
+  }
+})
 
 
 export default handleMovement

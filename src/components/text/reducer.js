@@ -35,6 +35,10 @@ const textReducer = (state=initialState, action) => {
           ...state,
           justFinished: false
         }
+    case "LOAD_TEXT":
+      return {
+        ...action.payload.text
+      }
 
     default:
       return state

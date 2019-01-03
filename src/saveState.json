@@ -1,0 +1,48 @@
+{
+  "state": {
+    "state": {
+      "player": {
+        "position": [
+          80,
+          128
+        ],
+        "direction": "RIGHT",
+        "spriteX": -16,
+        "spriteY": -32,
+        "speed": 80,
+        "shoes": "walkingShoes",
+        "keys": [],
+        "save": false,
+        "load": false
+      },
+      "map": {
+        "obstacles": [],
+        "portals": [],
+        "comms": [],
+        "level": "house2",
+        "previousLevel": "house2",
+        "inPortal": false,
+        "start": true,
+        "startPage": 2,
+        "quizActive": false,
+        "loading": false
+      },
+      "start": {
+        "currentSelection": 1,
+        "pointerPosition": 20
+      },
+      "text": {
+        "inComm": false,
+        "commName": "",
+        "commPosition": 0,
+        "justFinished": false
+      },
+      "quiz": {
+        "quizPosition": 0,
+        "quizName": "",
+        "quizAnswer": false,
+        "whichAnswer": 0
+      }
+    }
+  }
+}

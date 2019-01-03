@@ -22,7 +22,6 @@ const checkRender = () => {
         alt={"textCover"}
         />
         <div style={{position: "absolute", top: "0px", left: "10px", fontSize: "8px"}}>
-
         <p> {quotes[props.text.commName][props.text.commPosition]} </p>
         </div>
         </>

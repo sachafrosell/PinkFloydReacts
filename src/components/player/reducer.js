@@ -6,7 +6,8 @@ const initialState = {
   speed: 80,
   shoes: "walkingShoes",
   keys: [],
-  save: false
+  save: false,
+  load: false
 }
 
 const playerReducer = (state=initialState, action) => {
@@ -36,6 +37,30 @@ const playerReducer = (state=initialState, action) => {
       return {
         ...state,
         keys: [...state.keys, action.payload.key]
+      }
+    case "SAVE_GAME":
+      return {
+        ...state,
+        save: true
+      }
+    case "TOGGLE_SAVE":
+      return {
+        ...state,
+        save: false
+      }
+    case "LOAD_GAME":
+      return {
+        ...state,
+        load: true
+      }
+    case "TOGGLE_LOAD":
+      return {
+        ...state,
+        load: false
+      }
+    case "LOAD_PLAYER":
+      return {
+        ...action.payload.player
       }
     default:
       return state

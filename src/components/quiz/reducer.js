@@ -32,7 +32,10 @@ const quizReducer = (state=initialState, action) => {
           ...state,
           quizAnswer: action.payload.quizAnswer
         }
-
+    case "LOAD_QUIZ":
+      return {
+        ...action.payload.quiz
+      }
     default:
       return state
   }
