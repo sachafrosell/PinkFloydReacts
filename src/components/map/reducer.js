@@ -74,7 +74,10 @@ const mapReducer = (state=initialState, action) => {
       }
     case "LOAD_MAP":
       return {
-        ...action.payload.map
+        ...action.payload.map,
+        obstacles: [],
+        portals: [],
+        comms: [],
       }
     case "LOADING":
       return {

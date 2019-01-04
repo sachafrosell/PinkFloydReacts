@@ -110,7 +110,7 @@ function handleMovement(player) {
     portals.forEach(portal => {
       if (portal.inPortal(newPos)){
 
-        clearInterval(i)
+        // clearInterval(i)
 
         store.dispatch({
           type: 'PORTAL_HIT',
@@ -298,11 +298,12 @@ function handleMovement(player) {
     }
   } else {
     let boolean = quizCorrect()
+    let person = store.getState().quiz.quizName
     let thisQuiz = ''
     if (boolean) {
-      thisQuiz = quiz["master1"]["right"]
+      thisQuiz = quiz[person]["right"]
     } else {
-      thisQuiz = quiz["master1"]["wrong"]
+      thisQuiz = quiz[person]["wrong"]
     }
     if (commPosition !== thisQuiz.length - 1) {
       soundmanager2.soundManager.sounds.sound1.play()

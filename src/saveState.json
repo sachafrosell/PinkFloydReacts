@@ -3,15 +3,18 @@
     "state": {
       "player": {
         "position": [
-          80,
-          128
+          153,
+          118
         ],
-        "direction": "RIGHT",
+        "direction": "UP",
         "spriteX": -16,
-        "spriteY": -32,
+        "spriteY": -48,
         "speed": 80,
         "shoes": "walkingShoes",
-        "keys": [],
+        "keys": [
+          "master1",
+          "master2"
+        ],
         "save": false,
         "load": false
       },
@@ -19,17 +22,17 @@
         "obstacles": [],
         "portals": [],
         "comms": [],
-        "level": "house2",
-        "previousLevel": "house2",
+        "level": "dungeon9",
+        "previousLevel": "dungeon9",
         "inPortal": false,
         "start": true,
         "startPage": 2,
         "quizActive": false,
-        "loading": false
+        "loading": true
       },
       "start": {
-        "currentSelection": 1,
-        "pointerPosition": 20
+        "currentSelection": 2,
+        "pointerPosition": 52
       },
       "text": {
         "inComm": false,
@@ -39,9 +42,9 @@
       },
       "quiz": {
         "quizPosition": 0,
-        "quizName": "",
-        "quizAnswer": false,
-        "whichAnswer": 0
+        "quizName": "sign-level3mason",
+        "quizAnswer": true,
+        "whichAnswer": 2
       }
     }
   }

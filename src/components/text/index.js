@@ -41,7 +41,7 @@ const checkRender = () => {
       alt={"start"}
       />
       <div style={{position: "absolute", top: "0px", left: "10px", fontSize: "8px"}}>
-      {(boolean) ? <p> {quiz["master1"]["right"][props.text.commPosition]} </p> : <p> {quiz["master1"]["wrong"][props.text.commPosition]} </p> }
+      {(boolean) ? <p> {quiz[props.quizName]["right"][props.text.commPosition]} </p> : <p> {quiz[props.quizName]["wrong"][props.text.commPosition]} </p> }
       </div>
       </>
     )
@@ -67,7 +67,8 @@ const checkRender = () => {
 const mapStateToProps = state => {
   return {
     text: state.text,
-    answer: state.quiz.quizAnswer
+    answer: state.quiz.quizAnswer,
+    quizName: state.quiz.quizName
   }
 }
 

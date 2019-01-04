@@ -2,13 +2,29 @@
 import React from 'react';
 import Level1 from './opening-level.json'
 import Level2 from './level-2.json'
+import Level3 from './level3.json'
+import Level2Locked from './level2Locked.json'
 import House1 from './house1.json'
 import House2 from './basement-blackout.json'
-import Lavaland from './basement.json'
 import House3 from './loft.json'
+import Green1 from './green1.json'
+import Lavaland from './lavaland.json'
 import Dungeon1 from './dungeon1.json'
 import Dungeon2 from './dungeon2.json'
 import Dungeon3 from './dungeon3.json'
+import Dungeon4 from './dungeon4.json'
+import Dungeon5 from './dungeon5.json'
+import Dungeon6 from './dungeon6.json'
+import Dungeon7 from './dungeon7.json'
+import Dungeon8 from './dungeon8.json'
+import Dungeon9 from './dungeon9.json'
+import Dungeon10 from './dungeon10.json'
+import Dungeon11 from './dungeon11.json'
+import Dungeon12 from './dungeon12.json'
+import Dungeon13 from './dungeon13.json'
+import Dungeon14 from './dungeon14.json'
+import Dungeon15 from './dungeon15.json'
+import Dungeon9Locked from './dungeon9-locked.json'
 import Master1 from './master1.json'
 import Box from './box'
 import Portal from './portal'
@@ -23,13 +39,29 @@ import { connect } from 'react-redux'
 
 const layers1 = Level1.layers
 const layers2 = Level2.layers
+const level3 = Level3.layers
+const level2Locked = Level2Locked.layers
 const house1 = House1.layers
 const house2 = House2.layers
 const house3 = House3.layers
+const green1 = Green1.layers
 const lavaland = Lavaland.layers
 const dungeon1 = Dungeon1.layers
 const dungeon2 = Dungeon2.layers
 const dungeon3 = Dungeon3.layers
+const dungeon4 = Dungeon4.layers
+const dungeon5 = Dungeon5.layers
+const dungeon6 = Dungeon6.layers
+const dungeon7 = Dungeon7.layers
+const dungeon8 = Dungeon8.layers
+const dungeon9 = Dungeon9.layers
+const dungeon10 = Dungeon10.layers
+const dungeon11 = Dungeon11.layers
+const dungeon12 = Dungeon12.layers
+const dungeon13 = Dungeon13.layers
+const dungeon14 = Dungeon14.layers
+const dungeon15 = Dungeon15.layers
+const dungeon9Locked = Dungeon9Locked.layers
 const master1 = Master1.layers
 const jsxElements = []
 let previousLevel = "house2"
@@ -50,16 +82,23 @@ class Map extends React.Component {
 
 
   drawTiles = () => {
+    let keys = store.getState().player.keys
       if (this.props.level === "level1") {
         this.makeLevel(layers1)
       } else if (this.props.level === "level2") {
-        this.makeLevel(layers2)
+        if (keys.includes("master1")) {
+          this.makeLevel(layers2)
+        } else {
+          this.makeLevel(level2Locked)
+        }
       } else if (this.props.level === "house1") {
         this.makeLevel(house1)
       } else if (this.props.level === "house2") {
         this.makeLevel(house2)
       } else if (this.props.level === "house3") {
         this.makeLevel(house3)
+      } else if (this.props.level === "green1-1" || this.props.level === "green1-2") {
+        this.makeLevel(green1)
       } else if (this.props.level === "dungeon1") {
         this.makeLevel(dungeon1)
       } else if (this.props.level === "lavaland") {
@@ -70,6 +109,36 @@ class Map extends React.Component {
         this.makeLevel(dungeon2)
       } else if (this.props.level === "master1") {
         this.makeLevel(master1)
+      } else if (this.props.level === "dungeon4") {
+        this.makeLevel(dungeon4)
+      } else if (this.props.level === "dungeon5") {
+        this.makeLevel(dungeon5)
+      } else if (this.props.level === "dungeon6") {
+        this.makeLevel(dungeon6)
+      } else if (this.props.level === "dungeon7") {
+        this.makeLevel(dungeon7)
+      } else if (this.props.level === "dungeon8") {
+        this.makeLevel(dungeon8)
+      } else if (this.props.level === "dungeon9") {
+        if (keys.includes("master2")) {
+          this.makeLevel(dungeon9)
+        } else {
+          this.makeLevel(dungeon9Locked)
+        }
+      } else if (this.props.level === "dungeon10-1" || this.props.level === "dungeon10-2" || this.props.level === "dungeon10") {
+        this.makeLevel(dungeon10)
+      } else if (this.props.level === "dungeon11") {
+        this.makeLevel(dungeon11)
+      } else if (this.props.level === "dungeon12") {
+        this.makeLevel(dungeon12)
+      } else if (this.props.level === "dungeon13") {
+        this.makeLevel(dungeon13)
+      } else if (this.props.level === "dungeon14") {
+        this.makeLevel(dungeon14)
+      } else if (this.props.level === "dungeon15") {
+        this.makeLevel(dungeon15)
+      } else if (this.props.level === "level3") {
+        this.makeLevel(level3)
       }
   }
 
@@ -150,6 +219,7 @@ class Map extends React.Component {
   }
 
   whichLevel = (level) => {
+    // console.log(previousLevel);
     if (level !== previousLevel) {
       switch(previousLevel) {
         case "level1":
@@ -196,7 +266,7 @@ class Map extends React.Component {
         if (level === "house2") {
           this.handleLevelSwitch(level, [90, 128])
         } else if (level === "dungeon2") {
-          this.handleLevelSwitch(level, [240, 148])
+          this.handleLevelSwitch(level, [224, 148])
         }
         break;
         case "dungeon1":
@@ -213,18 +283,160 @@ class Map extends React.Component {
           this.handleLevelSwitch(level, [48, 8])
         } else if (level === "lavaland") {
           this.handleLevelSwitch(level, [240, 5])
+        } else if (level === "dungeon4") {
+          this.handleLevelSwitch(level, [144, 148])
+        } else if (level === "dungeon10") {
+          this.handleLevelSwitch(level, [16, 148])
         }
         break;
         case "dungeon3":
         if (level === "dungeon1"){
           this.handleLevelSwitch(level, [224, 8])
+        } else if (level === "dungeon10"){
+          this.handleLevelSwitch(level, [16, 148])
+        }
+        break
+        case "dungeon4":
+        if (level === "dungeon2"){
+          this.handleLevelSwitch(level, [144, -2])
+        } else if (level === "dungeon5"){
+          this.handleLevelSwitch(level, [96, 148])
+        } else if (level === "dungeon7"){
+          this.handleLevelSwitch(level, [0, 64])
+        } else if (level === "dungeon6"){
+          this.handleLevelSwitch(level, [256, 148])
+        } else if (level === "dungeon8"){
+          this.handleLevelSwitch(level, [16, 148])
         }
         break;
+        case "dungeon5":
+        if (level === "dungeon9"){
+          this.handleLevelSwitch(level, [272, 43])
+        } else if (level === "dungeon4"){
+          this.handleLevelSwitch(level, [96, -2])
+        }
+        break
+        case "dungeon6":
+        if (level === "dungeon4"){
+          this.handleLevelSwitch(level, [256, -2])
+        }
+        break
+        case "dungeon7":
+        if (level === "dungeon4"){
+          this.handleLevelSwitch(level, [272, 64])
+        } else if (level === "dungeon15"){
+          this.handleLevelSwitch(level, [0, 64])
+        }
+        break
+        case "dungeon8":
+        if (level === "dungeon4"){
+          this.handleLevelSwitch(level, [16, -2])
+        }
+        break
+        case "dungeon9":
+        if (level === "dungeon5"){
+          this.handleLevelSwitch(level, [0, 48])
+        } else if (level === "level3"){
+          this.handleLevelSwitch(level, [144, 148])
+        }
+        break
+        case "dungeon10":
+        if (level === "dungeon3"){
+          this.handleLevelSwitch(level, [16, -2])
+        } else if (level === "dungeon13"){
+          this.handleLevelSwitch(level, [144, 148])
+        } else if (level === "green1-1"){
+          this.handleLevelSwitch(level, [0, 128])
+        } else if (level === "green1-2"){
+          this.handleLevelSwitch(level, [0, 48])
+        } else if (level === "dungeon12"){
+          this.handleLevelSwitch(level, [240, 148])
+        } else if (level === "dungeon11"){
+          this.handleLevelSwitch(level, [80, 148])
+        }
+        break
+        case "dungeon10-1":
+        if (level === "dungeon3"){
+          this.handleLevelSwitch(level, [16, -2])
+        } else if (level === "dungeon13"){
+          this.handleLevelSwitch(level, [144, 148])
+        } else if (level === "green1-1"){
+          this.handleLevelSwitch(level, [0, 128])
+        } else if (level === "green1-2"){
+          this.handleLevelSwitch(level, [0, 48])
+        } else if (level === "dungeon12"){
+          this.handleLevelSwitch(level, [240, 148])
+        } else if (level === "dungeon11"){
+          this.handleLevelSwitch(level, [80, 148])
+        }
+        break
+        case "dungeon10-2":
+        if (level === "dungeon3"){
+          this.handleLevelSwitch(level, [16, -2])
+        } else if (level === "dungeon13"){
+          this.handleLevelSwitch(level, [144, 148])
+        } else if (level === "green1-1"){
+          this.handleLevelSwitch(level, [0, 128])
+        } else if (level === "green1-2"){
+          this.handleLevelSwitch(level, [0, 48])
+        } else if (level === "dungeon12"){
+          this.handleLevelSwitch(level, [240, 148])
+        } else if (level === "dungeon11"){
+          this.handleLevelSwitch(level, [80, 148])
+        }
+        break
+        case "dungeon13":
+        if (level === "dungeon10"){
+          this.handleLevelSwitch(level, [240, -2])
+        }
+        break
+        case "green1-1":
+        if (level === "dungeon10-1"){
+          this.handleLevelSwitch(level, [272, 128])
+        } else if (level === "dungeon10-2"){
+          this.handleLevelSwitch(level, [272, 64])
+        }
+        break
+        case "green1-2":
+        if (level === "dungeon10-1"){
+          this.handleLevelSwitch(level, [272, 128])
+        } else if (level === "dungeon10-2"){
+          this.handleLevelSwitch(level, [272, 64])
+        }
+        break
+        case "dungeon12":
+        if (level === "dungeon10"){
+          this.handleLevelSwitch(level, [192, -2])
+        } else if (level === "dungeon14"){
+          this.handleLevelSwitch(level, [144, 148])
+        }
+        break
+        case "dungeon14":
+        if (level === "dungeon12"){
+          this.handleLevelSwitch(level, [144, -2])
+        }
+        break
+        case "dungeon11":
+        if (level === "dungeon10"){
+          this.handleLevelSwitch(level, [80, -2])
+        }
+        break
+        case "dungeon15":
+        if (level === "dungeon7"){
+          this.handleLevelSwitch(level, [272, 64])
+        }
+        break
+        case "level3":
+        if (level === "dungeon9"){
+          this.handleLevelSwitch(level, [144, -2])
+        }
+        break
         default:
         return ""
       }
-      previousLevel = level
-
+      // if (!this.props.loading) {
+        previousLevel = level
+      // }
     }
   }
 
@@ -267,25 +479,63 @@ class Map extends React.Component {
       case "house1":
         return GreatEyeInTheSky
       case "level1":
-        return Money
+        return GreatEyeInTheSky
       case "level2":
+        return GreatEyeInTheSky
+      case "green1-1":
+        return GreatEyeInTheSky
+      case "green1-2":
         return GreatEyeInTheSky
       case "lavaland":
         return Money
       case "master1":
-        return Money
+        return GreatEyeInTheSky
       case "dungeon1":
         return Money
       case "dungeon2":
         return Money
       case "dungeon3":
         return Money
+      case "dungeon4":
+        return Money
+      case "dungeon5":
+        return Money
+      case "dungeon6":
+        return Money
+      case "dungeon7":
+        return Money
+      case "dungeon8":
+        return Money
+      case "dungeon9":
+        return Money
+      case "dungeon10":
+        return Money
+      case "dungeon10-1":
+        return Money
+      case "dungeon10-2":
+        return Money
+      case "dungeon11":
+        return Money
+      case "dungeon12":
+        return Money
+      case "dungeon13":
+        return Money
+      case "dungeon14":
+        return Money
+      case "dungeon15":
+        return Money
+      case "level3":
+        return Breath
       default:
         return ""
     }
   }
 
   makeAndDisplay = () => {
+      // if (this.props.loading) {
+      //   previousLevel = this.props.level
+      //   console.log(previousLevel);
+      // }
       this.drawTiles()
       return jsxElements.splice(0, jsxElements.length)
   }

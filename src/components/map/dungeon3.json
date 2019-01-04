@@ -202,92 +202,92 @@
                  "y":48
                 }, 
                 {
-                 "height":78.9160211220414,
+                 "height":78.916,
                  "id":14,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":3.13918772793308,
-                 "x":204.330319169422,
-                 "y":81.0839788779586
+                 "width":3.13919,
+                 "x":204.33,
+                 "y":81.084
                 }, 
                 {
-                 "height":2.2173958376658,
+                 "height":2.2174,
                  "id":16,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":61.4218647033427,
+                 "width":61.4219,
                  "x":144,
-                 "y":80.9237060169046
+                 "y":80.9237
                 }, 
                 {
-                 "height":96.575544799691,
+                 "height":96.5755,
                  "id":17,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2.72683891199128,
-                 "x":240.416297407231,
-                 "y":64.0807144317949
+                 "width":2.72684,
+                 "x":240.416,
+                 "y":64.0807
                 }, 
                 {
-                 "height":31.1314109119004,
+                 "height":31.1314,
                  "id":18,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":3.18131206398982,
-                 "x":205.194628127343,
-                 "y":16.8155066239462
+                 "width":3.18131,
+                 "x":205.195,
+                 "y":16.8155
                 }, 
                 {
-                 "height":32.494830367896,
+                 "height":32.4948,
                  "id":19,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2.72683891199128,
-                 "x":223.600790783284,
-                 "y":17.0427431999455
+                 "width":2.72684,
+                 "x":223.601,
+                 "y":17.0427
                 }, 
                 {
-                 "height":18.4061626559411,
+                 "height":18.4062,
                  "id":20,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1.59065603199491,
-                 "x":126.47681639465,
-                 "y":63.7999456869716
+                 "width":1.59066,
+                 "x":126.352530924367,
+                 "y":64
                 }, 
                 {
-                 "height":16.3610334719476,
+                 "height":16.361,
                  "id":22,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2.04512918399345,
-                 "x":143.620620264898,
-                 "y":64.3948032113818
+                 "width":2.04513,
+                 "x":144,
+                 "y":64
                 }, 
                 {
-                 "height":2.2586319988765,
+                 "height":2.25863,
                  "id":23,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":63.9192855682051,
-                 "x":64.0807144317949,
-                 "y":80.9030879362992
+                 "width":63.9193,
+                 "x":64.0807,
+                 "y":80.9031
                 }, 
                 {
                  "height":16,
@@ -334,26 +334,26 @@
                  "y":0
                 }, 
                 {
-                 "height":10.9241065901494,
+                 "height":10.9241,
                  "id":29,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":7.28273772676625,
-                 "x":4.44247001332741,
-                 "y":4.0783331269891
+                 "width":7.28274,
+                 "x":4.44247,
+                 "y":4.07833
                 }, 
                 {
-                 "height":11.2882434764877,
+                 "height":11.2882,
                  "id":30,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":7.93818412217521,
-                 "x":35.9767243702253,
-                 "y":4.22398788152442
+                 "width":7.93818,
+                 "x":35.9767,
+                 "y":4.22399
                 }, 
                 {
                  "height":16,
@@ -398,6 +398,17 @@
                  "width":32,
                  "x":208,
                  "y":160
+                }, 
+                {
+                 "height":16,
+                 "id":37,
+                 "name":"dungeon10",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":16,
+                 "x":16,
+                 "y":-16
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -439,7 +450,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":37,
+ "nextobjectid":38,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.1",
@@ -447,7 +458,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/..\/assets\/basictiles.tsx"
+         "source":"..\/..\/..\/..\/assets\/basictiles.tsx"
         }],
  "tilewidth":16,
  "type":"map",

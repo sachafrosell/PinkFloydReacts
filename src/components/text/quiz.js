@@ -6,6 +6,13 @@ const quiz = {
     "choices": ["1993", "1983", "1973"],
     "answer" : 3
   },
+  "master2": {
+    "wrong": [".....", ".......", "... WRONG!!!!.....", "...", ".... go away...", "....", "...NOW...fd" ],
+    "right": ["... Amazing!...", "... Syd said you were a smart one ...", "... Here's the key ... ", ".. Try not to get lost on the way....."],
+    "question": "Where was Pink Floyd formed ...?",
+    "choices": ["Manchester", "London", "Liverpool"],
+    "answer" : 2
+  },
 }
 
 export default quiz

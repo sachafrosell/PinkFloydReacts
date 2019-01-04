@@ -166,26 +166,26 @@
                  "y":112
                 }, 
                 {
-                 "height":31.4407477002812,
+                 "height":31.4407,
                  "id":10,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":11.544649546197,
-                 "x":114.095525834224,
-                 "y":0.491261682816894
+                 "width":11.5446,
+                 "x":114.096,
+                 "y":0.491262
                 }, 
                 {
-                 "height":31.5635631209855,
+                 "height":31.5636,
                  "id":11,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":12.1587266497181,
-                 "x":162.116355329575,
-                 "y":0.491261682816894
+                 "width":12.1587,
+                 "x":162.116,
+                 "y":0.491262
                 }, 
                 {
                  "height":16,
@@ -389,7 +389,7 @@
  "tilesets":[
         {
          "firstgid":1,
-         "source":"..\/..\/assets\/basictiles.tsx"
+         "source":"..\/..\/..\/..\/assets\/basictiles.tsx"
         }],
  "tilewidth":16,
  "type":"map",
